@@ -14,6 +14,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/monitor"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	_ "github.com/joho/godotenv/autoload"
+	"openpaas.tech/internal/auth"
 )
 
 func (s *FiberServer) RegisterFiberRoutes() {
@@ -56,6 +57,7 @@ func (s *FiberServer) RegisterFiberRoutes() {
 	}))
 
 	api.Get("/health", s.healthHandler)
+	auth.RegisterAuthRoutes(api, s.db)
 
 }
 
